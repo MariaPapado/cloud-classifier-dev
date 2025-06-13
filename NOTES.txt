@@ -1,0 +1,11 @@
+to test.py to xrhsimopoihsa gia na dw an douleuei kala to cloud 
+detection model san classifier, me pososta...
+
+
+
+1- save_pkl.py
+2- fetch_data.py
+
+
+3- count_classes.py
+4- find_mean_std.py
