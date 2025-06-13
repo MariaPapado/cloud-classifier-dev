@@ -64,7 +64,6 @@ class DataClassifier(Dataset):
         Xcloud = np.array(Xcloud)/255.
         Xcloud = np.expand_dims(Xcloud, 2)
         Ximg = np.array(Ximg)/255.
-#        print('aaaaaaaaaaaaaaaaaa', Ximg.shape)
 
         idx = data_ids_element.find('_')
         match = data_ids_element[idx+1:-4]
