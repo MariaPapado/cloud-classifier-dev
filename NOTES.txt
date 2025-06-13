@@ -1,11 +1,13 @@
-to test.py to xrhsimopoihsa gia na dw an douleuei kala to cloud 
-detection model san classifier, me pososta...
+to test_cloud_predictions.py to xrhsimopoihsa gia na dw an douleuei kala to cloud 
+detection model san classifier, me pososta twn sunnefwn sthn eikona...
 
 
 
-1- save_pkl.py
-2- fetch_data.py
+1- save_pkl.py   #swzw to pkl me to img path, to label kai to band_type
+2- fetch_data.py  #me vase to pkl pou ekana save vriskw tis eikones kai tis kanw save
+3- split_data_to_txt.py
+4- count_classes.py
+5- find_mean_std.py
 
 
-3- count_classes.py
-4- find_mean_std.py
+6- training (arxeia fakelou)...
