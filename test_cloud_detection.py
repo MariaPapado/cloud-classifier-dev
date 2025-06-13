@@ -56,8 +56,8 @@ def normalise_bands(image, percentile_min=2, percentil_max=98):
         # scale channels and reorder
     for i in range(image.shape[0]):
         c = image[i,:,:]
-        min_val = np.nanmin(c[np.nonzero(c)])
-        max_val = np.nanmax(c[np.nonzero(c)])
+        min_val = np.nanmin(c)
+        max_val = np.nanmax(c)
         c_2 = (c-min_val)/(max_val-min_val)
         c_valid = c_2[np.logical_and(c_2 > 0, c_2 < 1.0)]
         perc_2 = np.nanpercentile(c_valid, 2)
