@@ -74,7 +74,7 @@ import torch
 
 
 
-def normalize_img(img, mean=[0.467, 0.504, 0.493], std=[0.306, 0.307, 0.322]):  #
+def normalize_img(img, mean=[0.454, 0.493, 0.482], std=[0.300, 0.300, 0.316]):  #
 
     img_array = np.asarray(img, dtype=np.float32)
     normalized_img = np.empty_like(img_array, np.float32)
