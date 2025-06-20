@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
+##predicts clouds based on highres cloud model
 
 # In[1]:
 import base64
