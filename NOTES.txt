@@ -1,3 +1,6 @@
+docker : https://github.com/Orbital-Eye/cloud-classifier/tree/hetzner_branch
+exw kai maria branch
+
 to test_cloud_predictions.py to xrhsimopoihsa gia na dw an douleuei kala to cloud 
 detection model san classifier, me pososta twn sunnefwn sthn eikona...
 
