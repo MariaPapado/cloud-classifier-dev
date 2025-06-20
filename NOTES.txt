@@ -2,7 +2,7 @@ to test_cloud_predictions.py to xrhsimopoihsa gia na dw an douleuei kala to clou
 detection model san classifier, me pososta twn sunnefwn sthn eikona...
 
 
-0- predict_clouds.py  ##auto to etreksa prwta gia na dhmiourghsw ta cloud masks gia to dataset mou
+- predict_clouds.py  ##kanei predict to cloud mask me vash to highres cloud detection montelo
 
 
 1- save_pkl.py   #swzw to pkl me to img path, to label kai to band_type
@@ -13,3 +13,25 @@ detection model san classifier, me pososta twn sunnefwn sthn eikona...
 
 
 6- training (arxeia fakelou)...
+
+gia ta testing:
+
+test_model.py ## kanei testing alla me vash tis eikones kai ta cloud masks pou exw kanei hdh save kai einai resized already kai apothikeumenes.
+
+test_scratch.py  ##kanei testing kanwntas load ta arxika tif twn eikonwn kai kanei kai tautoxrona thn idia wra predict ta cloud masks
+
+test_files_check.py ## kanw test to cloud-classifier docker.. 
+to sugkrinw me ta apotelesmata tou test_scratch.py gia na dw an einai ola ok
+
+test_one_image.py  ##test cloud-classifier docker on one given image
+
+
+
+
+
+
+
+
+
+
+
