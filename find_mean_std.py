@@ -20,7 +20,7 @@ num_pixels = 0
 
 # First pass: Compute mean
 for _, id in enumerate(tqdm(ids)):
-    image = Image.open('./data_full_pkl/images/{}'.format(id)) #[32:].reshape(511, 511, 13) 
+    image = Image.open('./data_full_pkl/images2/{}'.format(id)) #[32:].reshape(511, 511, 13) 
     img = np.array(image)/255.
 
     h, w, _ = img.shape
@@ -33,7 +33,7 @@ print(mean)
 
 # Second pass: Compute variance
 for _,id in enumerate(tqdm(ids)):
-    image = Image.open('./data_full_pkl/images/{}'.format(id)) #[32:].reshape(511, 511, 13) 
+    image = Image.open('./data_full_pkl/images2/{}'.format(id)) #[32:].reshape(511, 511, 13) 
     img = np.array(image)/255.
 
     # Compute squared differences from the mean
