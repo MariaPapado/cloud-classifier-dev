@@ -12,15 +12,15 @@ import os
 import shutil
 import torch.nn.functional as F
 
-with open('/home/maria/cloud-classifier//data_full_pkl/train.txt', 'r') as f:
+with open('/home/maria/mycloud-classifier//data_full_pkl/train.txt', 'r') as f:
     train_lines = f.read().splitlines()
 
 
-with open('/home/maria/cloud-classifier//data_full_pkl/val.txt', 'r') as f:
+with open('/home/maria/mycloud-classifier//data_full_pkl/val.txt', 'r') as f:
     val_lines = f.read().splitlines()
 
-data_dir = '/home/maria/cloud-classifier//data_full_pkl/images/'
-cloud_dir = '/home/maria/cloud-classifier//data_full_pkl/cloud_masks/'
+data_dir = '/home/maria/mycloud-classifier//data_full_pkl/images2/'
+cloud_dir = '/home/maria/mycloud-classifier//data_full_pkl/cloud_masks2/'
 
 batch_size = 8
 trainset = DataClassifier(data_dir, cloud_dir, train_lines, 'train')
@@ -32,7 +32,6 @@ valloader = DataLoader(valset, batch_size=batch_size, shuffle=True, drop_last=Fa
 model = torchvision.models.resnet50(pretrained=True).cuda()
 model.conv1 = torch.nn.Conv2d(4, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False).cuda()
 model.fc = torch.nn.Linear(2048,4).cuda()
-w_tensor=torch.FloatTensor(4)
 
 
 
@@ -51,7 +50,7 @@ focal_loss = focal_loss.cuda()
 
 criterion = focal_loss # FocalLoss()
 
-optimizer = torch.optim.Adam(model.parameters(), lr=0.0001)
+optimizer = torch.optim.Adam(model.parameters(), lr=0.00005)
 
 epochs = 20
 
