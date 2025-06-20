@@ -2,6 +2,8 @@ to test_cloud_predictions.py to xrhsimopoihsa gia na dw an douleuei kala to clou
 detection model san classifier, me pososta twn sunnefwn sthn eikona...
 
 
+0- predict_clouds.py  ##auto to etreksa prwta gia na dhmiourghsw ta cloud masks gia to dataset mou
+
 
 1- save_pkl.py   #swzw to pkl me to img path, to label kai to band_type
 2- fetch_data.py  #me vase to pkl pou ekana save vriskw tis eikones kai tis kanw save
