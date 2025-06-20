@@ -25,11 +25,10 @@ class DataClassifier(Dataset):
     def normalize_img(self, img, mean=[0.321,  0.338, 0.317], std=[0.276, 0.273, 0.273]):  # 128x128 (datasetFPv1)
 
         """Normalize image by subtracting mean and dividing by std."""
-        img_array = np.asarray(img, dtype=np.uint8)
-        normalized_img = np.empty_like(img_array, np.float32)
+        normalized_img = np.empty_like(img, np.float32)
 
         for i in range(3):  # Loop over color channels
-            normalized_img[..., i] = (img_array[..., i] - mean[i]) / std[i]
+            normalized_img[..., i] = (img[..., i] - mean[i]) / std[i]
         
         return normalized_img
 
@@ -64,6 +63,7 @@ class DataClassifier(Dataset):
         Xcloud = np.array(Xcloud)/255.
         Xcloud = np.expand_dims(Xcloud, 2)
         Ximg = np.array(Ximg)/255.
+#        print('aaaaaaaaaaaaaaaaaa', Ximg.shape)
 
         idx = data_ids_element.find('_')
         match = data_ids_element[idx+1:-4]
@@ -73,6 +73,7 @@ class DataClassifier(Dataset):
         Ximg = self.normalize_img(Ximg)
 
         Xfin = np.concatenate((Ximg,Xcloud), 2)            
+        #Xfin = Ximg
         if self.mode == 'train': 
             dice = random.randrange(0,3)
             if dice==0:
