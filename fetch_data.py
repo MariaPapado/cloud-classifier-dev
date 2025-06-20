@@ -73,7 +73,6 @@ import torch
 
 
 
-
 def normalize_img(img, mean=[0.454, 0.493, 0.482], std=[0.300, 0.300, 0.316]):  #
 
     img_array = np.asarray(img, dtype=np.float32)
@@ -186,7 +185,7 @@ print('BAD: ',np.sum(quality=='BAD'))
 
 model = myUNF.UNetFormer(num_classes=2)
 
-model.load_state_dict(torch.load('vhr_cloud_net_18.pt', weights_only=True))
+model.load_state_dict(torch.load('net_23.pt', weights_only=True))
 model=model.cuda()
 model = model.eval()
 
@@ -195,10 +194,11 @@ final_data = []
 for _, r in enumerate(tqdm(results)):
 
         mydict = {}
-        img_ = load_tif_image(r)
+        img = load_tif_image(r)
+        img_save = img.copy()
         #img = np.transpose(img, (1,2,0))  #/255.
 
-        img = (img_).astype(np.float32) #[:,:,:3]
+        img = (img).astype(np.float32) #[:,:,:3]
         img = normalize_img(img)
 
 #        img = np.transpose(img, (2,0,1))
@@ -214,11 +214,18 @@ for _, r in enumerate(tqdm(results)):
         output = postprocess(output.astype(np.uint8))
         output = output[:,:,0]
         output = output.astype(np.uint8)
+        output = output/255.
 
-        output = cv2.resize(output, (384,384), cv2.INTER_NEAREST)
-        output = Image.fromarray(output)
+        output = cv2.resize(output, (384,384), cv2.INTER_LINEAR)
+        idx1 = np.where(output>=0.2)
+        idx0 = np.where(output<0.2)
+        output[idx0] = 0
+        output[idx1] = 1
+        output = np.array(output*255, dtype=np.uint8)
+        output = Image.fromarray(output) 
 
-        img_save = cv2.resize(np.transpose(img_, (1,2,0)), (384,384), cv2.INTER_NEAREST)
+
+        img_save = cv2.resize(np.transpose(img_save, (1,2,0)), (384,384), cv2.INTER_LINEAR)
         img_save = img_save*255
 
         img_save = np.array(img_save, dtype=np.uint8)
@@ -234,8 +241,8 @@ for _, r in enumerate(tqdm(results)):
 #        mydict['img_id'] = img_id
 #        final_data.append(mydict)
 
-        img_save.save('./data_full_pkl/images/{}_{}.png'.format(img_id, label))
-        output.save('./data_full_pkl/cloud_masks/{}_{}.png'.format(img_id, label))
+        img_save.save('./data_full_pkl/images2/{}_{}.png'.format(img_id, label))
+        output.save('./data_full_pkl/cloud_masks2/{}_{}.png'.format(img_id, label))
 
 
 
