@@ -185,5 +185,5 @@ print('SEMIBAD: ',np.sum(quality=='SEMIBAD'))
 print('BAD: ',np.sum(quality=='BAD'))
 
 
-with open("./data_full_pkl/data_full_new.pkl", "wb") as f:
-    pickle.dump(results2, f)
+#with open("./data_full_pkl/data_full_new_April.pkl", "wb") as f:
+#    pickle.dump(results2, f)
