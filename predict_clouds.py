@@ -1,5 +1,8 @@
 ##predicts clouds based on highres cloud model
 
+#!/usr/bin/env python
+# coding: utf-8
+
 # In[1]:
 import base64
 import requests
@@ -144,3 +147,4 @@ for _, res in enumerate(tqdm(results)):
 #with open("./data_full_pkl/images_labels_new.pkl", "wb") as f:
 #    pickle.dump(final_data, f)
         
+
