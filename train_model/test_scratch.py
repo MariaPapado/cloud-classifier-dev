@@ -149,7 +149,7 @@ with open("./data_full_pkl/data_full_new.pkl", "rb") as f:
 
 with open('/home/maria/mycloud-classifier/data_full_pkl/test.txt', 'r') as f:
     test_ids = f.read().splitlines()
-#test_ids = test_ids[:20]
+test_ids = test_ids[:20]
 
 # In[6]:
 
@@ -166,7 +166,7 @@ model_classifier.fc = torch.nn.Linear(2048, 4).cuda()
 model_classifier.load_state_dict(torch.load('./train_new_model/saved_models_success/net_14.pt', weights_only=True))
 model_classifier = model_classifier.eval()
 
-classes = ['GOOD', 'OK', 'SEMIBAD', 'BAD']
+classes = ['BAD', 'SEMIBAD', 'OK', 'GOOD']
 
 NumClasses = 4
 c_matrix = np.zeros((NumClasses, NumClasses), dtype=int)
@@ -245,6 +245,8 @@ for m, res in enumerate(tqdm(results)):
             Xfin = torch.from_numpy(Xfin).unsqueeze(0).float().cuda()
 
             out = model_classifier(Xfin)
+            out = out[:, torch.arange(out.size(1)-1, -1, -1)]
+
 #            np.save('checknp_scratch.npy', out.data.cpu().numpy()) ####to elegksa me to docker mexri edw einai idio!!!!!!
 
             prob = torch.nn.functional.softmax(out, 1)
@@ -271,6 +273,8 @@ print(c_matrix)
 '''
 ##NOW
 #docker
+
+GOOD OK SEMIBAD BAD
 [[103   4  15   0]
  [  2  74  39   2]
  [  0   2  27   2]
@@ -282,3 +286,9 @@ gpu2
  [  0   1  28   2]
  [  0   1  17  57]]
  '''
+
+#docker class reverse
+#[[ 54  11  10   0]
+# [  2  19  10   0]
+# [  2  24  89   2]
+# [  0   7  12 103]]
