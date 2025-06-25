@@ -1,3 +1,5 @@
+##test of highres cloud detection model alone can act as a cloud classifier by calculating cloud percentages
+
 from fastapi import FastAPI
 import uvicorn
 import cv2
