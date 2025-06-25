@@ -26,7 +26,8 @@ with open('/home/maria/mycloud-classifier/data_full_pkl/test.txt', 'r') as f:
 
 NumClasses = 4
 c_matrix = np.zeros((NumClasses, NumClasses), dtype=int)
-classes = ['GOOD', 'OK', 'SEMIBAD', 'BAD']
+#classes = ['GOOD', 'OK', 'SEMIBAD', 'BAD']
+classes = ['BAD', 'SEMIBAD', 'OK', 'GOOD']
 for _, res in enumerate(tqdm(results)):
     for tid in test_ids:
         if str(res['img_id']) in tid:
@@ -43,6 +44,7 @@ for _, res in enumerate(tqdm(results)):
 
             data = json.loads(response.text)  # replace `your_str` with your actual string variable
             classification = ast.literal_eval(data["classification"])
+            print('cl', classification)
             highest = max(classification, key=classification.get)
             y_pred = classes.index(highest)
             y_true = classes.index(res['label'])
